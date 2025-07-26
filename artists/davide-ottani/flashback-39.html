@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Flashback - Davide Ottani | Smile Agency</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flashback - Undici illustrazioni per il set di carte collezionabili creato da Dario Moccia, 2022. Opera di Davide Ottani per Smile Agency.">
+    <meta name="keywords" content="davide ottani, flashback, carte collezionabili, dario moccia, illustrazioni, smile agency">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'alata': ['Alata', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+
+<body class="font-alata bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-effect">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <a href="/" class="flex items-center">
+                        <img src="../../images/logo.svg" alt="Smile Agency" class="h-12 w-auto">
+                    </a>
+                    
+                    <!-- Desktop Menu -->
+                    <div class="hidden lg:flex space-x-8">
+                        <a href="/#about" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Chi siamo</a>
+                        <a href="/#artists" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Artisti</a>
+                        <a href="/#services" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Servizi</a>
+                        <a href="/#contacts" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Contatti</a>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="lg:hidden text-white" id="mobile-menu-btn">
+                        <ion-icon name="menu-outline" class="text-2xl"></ion-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="lg:hidden glass-dark hidden" id="mobile-menu">
+            <div class="px-4 py-6 space-y-4">
+                <a href="/#about" class="block text-white hover:text-gray-300 transition-colors duration-300 font-medium">Chi siamo</a>
+                <a href="/#artists" class="block text-white hover:text-gray-300 transition-colors duration-300 font-medium">Artisti</a>
+                <a href="/#services" class="block text-white hover:text-gray-300 transition-colors duration-300 font-medium">Servizi</a>
+                <a href="/#contacts" class="block text-white hover:text-gray-300 transition-colors duration-300 font-medium">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('../../images/3.webp');">
+            <div class="absolute inset-0 gradient-overlay"></div>
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-4 py-20">
+            <div class="max-w-4xl">
+                <div class="mb-8">
+                    <a href="/#artists" class="inline-flex items-center text-white hover:text-gray-300 transition-colors duration-300 mb-4">
+                        <ion-icon name="arrow-back-outline" class="mr-2"></ion-icon>
+                        <span>Torna agli artisti</span>
+                    </a>
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in text-shadow">
+                    Flashback
+                </h1>
+                <p class="text-xl lg:text-2xl text-white mb-4 animate-slide-up">
+                    <strong>Davide Ottani</strong>
+                </p>
+                <p class="text-lg text-white mb-8 animate-slide-up max-w-3xl leading-relaxed">
+                    Undici illustrazioni per il set di carte collezionabili "Flashback" creato da Dario Moccia, 2022
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Description -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="animate-fade-in">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">Descrizione</h2>
+                    <div class="space-y-6 text-gray-700 leading-relaxed text-lg">
+                        <p>Undici illustrazioni per il set di carte collezionabili "Flashback" creato da Dario Moccia, 2022</p>
+                        <p>Questo progetto rappresenta una collaborazione unica tra Davide Ottani e Dario Moccia, dando vita a un set di carte collezionabili che combina arte, nostalgia e creatività.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-12 text-center animate-fade-in">Galleria</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Placeholder per le immagini del progetto -->
+                    <div class="card-hover rounded-2xl overflow-hidden shadow-2xl animate-slide-up">
+                        <div class="bg-gray-800 h-64 flex items-center justify-center">
+                            <p class="text-gray-400">Immagine 1</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover rounded-2xl overflow-hidden shadow-2xl animate-slide-up">
+                        <div class="bg-gray-800 h-64 flex items-center justify-center">
+                            <p class="text-gray-400">Immagine 2</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover rounded-2xl overflow-hidden shadow-2xl animate-slide-up">
+                        <div class="bg-gray-800 h-64 flex items-center justify-center">
+                            <p class="text-gray-400">Immagine 3</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover rounded-2xl overflow-hidden shadow-2xl animate-slide-up">
+                        <div class="bg-gray-800 h-64 flex items-center justify-center">
+                            <p class="text-gray-400">Immagine 4</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover rounded-2xl overflow-hidden shadow-2xl animate-slide-up">
+                        <div class="bg-gray-800 h-64 flex items-center justify-center">
+                            <p class="text-gray-400">Immagine 5</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover rounded-2xl overflow-hidden shadow-2xl animate-slide-up">
+                        <div class="bg-gray-800 h-64 flex items-center justify-center">
+                            <p class="text-gray-400">Immagine 6</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artist Info -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-fade-in">
+                        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">Davide Ottani</h2>
+                        <div class="space-y-6 text-gray-700 leading-relaxed">
+                            <p>Illustratore e fumettista italiano, Davide Ottani è noto per il suo stile distintivo e la sua capacità di creare mondi visivi unici.</p>
+                            <p>La sua collaborazione con Dario Moccia per il progetto "Flashback" ha dato vita a un set di carte collezionabili che celebra la nostalgia e l'arte dell'illustrazione.</p>
+                        </div>
+                        <div class="mt-8">
+                            <a href="/#artists" class="inline-flex items-center bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 hover-lift">
+                                <span>Scopri altri artisti</span>
+                                <ion-icon name="arrow-forward-outline" class="ml-2"></ion-icon>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="relative animate-slide-up">
+                        <div class="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
+                            <p class="text-gray-500">Foto dell'artista</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="../../images/logo.svg" alt="Smile Agency" class="h-16 w-auto mx-auto mb-8">
+                <p class="text-gray-400 mb-4">© Smile Agency</p>
+                <div class="flex justify-center space-x-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors duration-300">Privacy policy</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300">Cookie policy</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300">Area riservata</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-dark');
+                navbar.classList.remove('glass-effect');
+            } else {
+                navbar.classList.remove('glass-dark');
+                navbar.classList.add('glass-effect');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-fade-in, .animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
