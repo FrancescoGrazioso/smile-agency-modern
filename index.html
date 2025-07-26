@@ -95,6 +95,31 @@
             transform: scale(1.02);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
+        
+        /* Effetto hover migliorato */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
+        
+        .image-container:hover .image-base {
+            transform: scale(1.1);
+        }
+        
+        /* Stato attivo per l'immagine overlay */
+        .image-overlay.active {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -171,9 +196,19 @@
                 </div>
                 
                 <div class="relative animate-slide-up">
-                    <div class="relative">
-                        <img src="images/compagni_inseparabili1.webp" alt="Dario e Davide" class="w-full rounded-2xl shadow-2xl">
-                        <img src="images/compagni_inseparabili2.webp" alt="Dario e Davide overlay" class="absolute inset-0 w-full rounded-2xl animate-float">
+                    <div class="image-container group cursor-pointer rounded-2xl shadow-2xl" id="imageContainer">
+                        <!-- Immagine base -->
+                        <img src="images/compagni_inseparabili1.webp" alt="Dario e Davide" class="image-base w-full transition-transform duration-700">
+                        
+                        <!-- Immagine overlay con effetto fade -->
+                        <img src="images/compagni_inseparabili2.webp" alt="Dario e Davide overlay" class="image-overlay w-full">
+                        
+                        <!-- Overlay con testo informativo -->
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-700 flex items-end">
+                            <div class="w-full p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-300">
+                                <p class="text-sm font-medium">Hover per alternare le immagini</p>
+                            </div>
+                        </div>
                     </div>
                     <p class="text-center text-gray-600 mt-4 text-sm">Dario e Davide in "Compagni inseparabili" - Primo Impatto</p>
                 </div>
@@ -550,6 +585,85 @@
             el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             observer.observe(el);
         });
+
+        // Sistema di alternanza immagini con timer e hover
+        const imageContainer = document.getElementById('imageContainer');
+        if (imageContainer) {
+            const overlay = imageContainer.querySelector('.image-overlay');
+            let autoTimer;
+            let isHovering = false;
+            let isOverlayActive = false;
+            
+            // Funzione per alternare le immagini
+            function toggleImage() {
+                isOverlayActive = !isOverlayActive;
+                if (isOverlayActive) {
+                    overlay.classList.add('active');
+                } else {
+                    overlay.classList.remove('active');
+                }
+            }
+            
+            // Funzione per avviare il timer automatico
+            function startAutoTimer() {
+                if (!isHovering) {
+                    autoTimer = setInterval(() => {
+                        toggleImage();
+                    }, 5000);
+                }
+            }
+            
+            // Funzione per fermare il timer automatico
+            function stopAutoTimer() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+            
+            // Event listeners per hover
+            imageContainer.addEventListener('mouseenter', function() {
+                isHovering = true;
+                stopAutoTimer();
+                
+                // Aspetta che la transizione finisca prima di alternare
+                setTimeout(() => {
+                    toggleImage();
+                }, 700); // Durata della transizione CSS
+            });
+            
+            imageContainer.addEventListener('mouseleave', function() {
+                isHovering = false;
+                startAutoTimer(); // Riavvia il timer automatico
+            });
+            
+            // Avvia il timer automatico all'inizio
+            startAutoTimer();
+            
+            // Touch interaction per mobile
+            let touchStartTime = 0;
+            
+            imageContainer.addEventListener('touchstart', function(e) {
+                touchStartTime = Date.now();
+                stopAutoTimer();
+            });
+            
+            imageContainer.addEventListener('touchend', function(e) {
+                const touchDuration = Date.now() - touchStartTime;
+                
+                // Se il touch dura più di 300ms, alterna l'immagine
+                if (touchDuration > 300) {
+                    setTimeout(() => {
+                        toggleImage();
+                    }, 700);
+                }
+                
+                // Riavvia il timer automatico dopo un breve delay
+                setTimeout(() => {
+                    startAutoTimer();
+                }, 1000);
+            });
+        }
     </script>
 </body>
 </html> 
