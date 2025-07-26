@@ -1,0 +1,19 @@
+body{
+}
+.hidenav.fixed {
+    transition: none!important;
+}
+.hidenav.nav-up{
+    transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+}
+.hidenav{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index:1049!important;
+    transition: all 0.2s ease-in-out;
+}
