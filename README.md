@@ -1,4 +1,5 @@
 # 🎨 Smile Agency - Redesign Moderno
+<img width="1512" height="763" alt="Screenshot 2025-07-26 at 12 43 33" src="https://github.com/user-attachments/assets/b94f8b36-1afa-4d62-b7b5-ab5e300916e1" />
 
 ## 📖 Descrizione
 
